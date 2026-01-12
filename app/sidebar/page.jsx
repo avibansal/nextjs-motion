@@ -27,15 +27,7 @@ export default function page() {
     return (
 
         <motion.div
-            initial={false}
-            animate={{
-                width: isOpen ? "200px" : "60px"
-            }}
-            transition={{
-                duration: 0.3,
-                // ease: "easeInOut"
-            }}
-            className={`h-screen bg-neutral-200 border border-neutral-400 shadow-2xl transition-all duration-300 relative flex flex-col justify-between`}>
+            className={`h-screen bg-neutral-200 border border-neutral-400 shadow-2xl transition-all duration-300 relative flex flex-col justify-between ${isOpen ? "w-[200px]" : "w-[60px]"}`}>
             <button onClick={() => setIsOpen(!isOpen)} className='absolute flex justify-center items-center border border-neutral-400 top-20 right-[-5px] w-[20px] h-[20px] bg-neutral-200 rounded-full'>
                 {isOpen ? <IconChevronLeft /> : <IconChevronRight />}
             </button>
@@ -55,32 +47,20 @@ export default function page() {
                     <div key={item.label} className='flex gap-5 items-center px-4 py-2 hover:bg-neutral-300 cursor-pointer'>
                         <item.icon />
                         {isOpen && (
-                            <motion.span
-                                initial={{
-                                    opacity: 1,
-                                    y: 0
-                                }}
-                                animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-                                exit={{ opacity: 0 }}
-                            // transition={{ delay:  }}
-                            // transition={{ delay: 5 }}
-                            >
+                            <span>
                                 {item.label}
-                            </motion.span>
+                            </span>
                         )}
                     </div>
                 ))}
             </div>
             <div key="Logout" className={`flex gap-5 items-center px-4 py-2 bg-cyan-700 cursor-pointer mb-2  ${isOpen ? "mr-2 ml-2" : "mr-0 ml-0"}`}>
                 <IconLogout />
-                {isOpen && <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
+                {isOpen && <span
                     className="text-xl font-bold text-white"
                 >
                     Logout
-                </motion.span>}
+                </span>}
             </div>
         </motion.div >
     )
